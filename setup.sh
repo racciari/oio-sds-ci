@@ -12,8 +12,5 @@ sudo /usr/share/zookeeper/bin/zkServer.sh start
 pkg_install python-software-properties
 sudo add-apt-repository -y ppa:rwky/redis
 sudo apt-get update
-# Install redis
-pkg_install redis-server
 
-# Install tox
-pkg_install python-tox
+pkg_install redis-server beanstalkd python-tox

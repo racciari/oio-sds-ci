@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage
-while getopts ":r:p:b:c:x" opt; do
+while getopts ":r:p:b:c:" opt; do
         case $opt in
                 r) REPLICATION_LEVEL="${OPTARG}" ;;
 		p) PULL_ID="${OPTARG}" ;;
@@ -71,7 +71,7 @@ function run_repli3_instance () {
 	export ADD_META1=3
 	export ADD_META2=3
 	export NOSE_ARGS="--with-xunit --xunit-file=${TMPDIR}/nosestests-replix3.xml --with-html --html-file=${TMPDIR}/nosestests-replix3.html"
-	oio-reset.sh -S SINGLE -X sqlx -R 1 -B 3 -D 3 -S THREECOPIES
+	oio-reset.sh -X sqlx -R 1 -B 3 -D 3 -S THREECOPIES
 	cd ${TMPDIR}/oio-sds
 	tox -e func
 }
@@ -79,30 +79,30 @@ function run_repli3_instance () {
 # Launch functional test in rain event
 function run_rain_instance () {
 	NB_RAWX=12
-        export ADD_META1=3
-        export ADD_META2=3
-        export NOSE_ARGS="--with-xunit --xunit-file=${TMPDIR}/nosestests-rain.xml --with-html --html-file=${TMPDIR}/nosestests-rain.html"
-        oio-reset.sh -S SINGLE -X sqlx -R 1 -B 3 -D 3 -E ${NB_RAWX} -S THREECOPIES
+	export ADD_META1=3
+	export ADD_META2=3
+	export NOSE_ARGS="--with-xunit --xunit-file=${TMPDIR}/nosestests-rain.xml --with-html --html-file=${TMPDIR}/nosestests-rain.html"
+	oio-reset.sh -X sqlx -R 1 -B 3 -D 3 -E ${NB_RAWX} -S RAIN
 	sleep 10
-        cd ${TMPDIR}/oio-sds
-        tox -e func
+	cd ${TMPDIR}/oio-sds
+	tox -e func
 }
 
 case "$REPLICATION_LEVEL" in
-        single)
-            run_single_instance
-            ;;
+	single)
+		run_single_instance
+		;;
 
-        replix3)
-            run_repli3_instance
-            ;;
-	
+	replix3)
+		run_repli3_instance
+		;;
+
 	rain)
-            run_rain_instance
-            ;;
+		run_rain_instance
+		;;
 
-        *)
- 	    run_single_instance
-	    run_repli3_instance
-	    run_rain_instance
+	*)
+		run_single_instance
+		run_repli3_instance
+		run_rain_instance
 esac

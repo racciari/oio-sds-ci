@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage
-while getopts ":p:b:c:x" opt; do
+while getopts ":p:b:c:" opt; do
         case $opt in
                 p) PULL_ID="${OPTARG}" ;;
                 b) BRANCH="${OPTARG}" ;;
@@ -143,5 +143,5 @@ cmake \
         -DGRIDINIT_LIBDIR=$SDS/lib \
         ../oio-sds
 make && make install
-( cd ../oio-sds && cd python && sudo python ./setup.py develop )
+(cd ../oio-sds && sudo python ./setup.py develop)
 cd ..

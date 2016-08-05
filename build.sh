@@ -70,7 +70,7 @@ pkg_install \
     libattr1-dev \
     liblzo2-dev \
     libpython-dev \
-    libleveldb1 libleveldb-dev \
+    libleveldb1v5 libleveldb-dev \
     libzookeeper-mt-dev
 
 # Required since the SDK_ONLY installation now brings the python part.

@@ -57,7 +57,9 @@ pkg_install \
     flex bison \
     libcurl4-openssl-dev \
     libjson-c-dev \
-    libglib2.0-dev
+    libglib2.0-dev \
+    libapr1-dev \
+    curl
 
 # Dependencies specific to the backend
 pkg_install \

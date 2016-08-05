@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CIREPO=GuillaumeDelaporte
+CIREPO=racciari
 
 # Usage
 while getopts ":r:g:p:b:c:R:" opt; do
@@ -24,9 +24,9 @@ echo "$0" \
 
 # Define the packager installion function
 # For Ubuntu only in this first version : apt-get
-function pkg_install () { sudo apt-get -y install $@ ; }
+function pkg_install () { sudo apt-get -q -y install $@ ; }
 
-sudo apt-get update
+sudo apt-get -q update
 pkg_install git
 
 export OIO_HOME="/home/openio"

@@ -17,7 +17,7 @@ echo "$0" \
 
 # Define the packager installion function
 # For Ubuntu only in this first version : apt-get
-function pkg_install () { sudo apt-get -y install $@ ; }
+function pkg_install () { sudo apt-get -y -q install $@ ; }
 
 # Define and create the default building directory
 export SDS=/home/openio/build

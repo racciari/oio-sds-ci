@@ -38,45 +38,16 @@ autoreconf -vif && ./configure --enable-{static,shared} --prefix=$SDS
 make && make install
 cd ..
 
-# librain's dependencies
-
-git clone http://lab.jerasure.org/jerasure/gf-complete.git
-cd gf-complete
-autoreconf -vif && ./configure --prefix=$SDS
-make && make install
-cd ..
-
-git clone http://lab.jerasure.org/jerasure/jerasure.git
-cd jerasure
-autoreconf -vif && ./configure LDFLAGS=-L$SDS/lib/ CPPFLAGS=-I$SDS/include --prefix=$SDS
-make && make install
-mv $SDS/include/jerasure.h $SDS/include/jerasure/jerasure.h
-cd ..
-
-# librain
-pkg_install cmake libglib2.0-dev
-
-git clone https://github.com/open-io/librain.git
-mkdir build-librain && cd build-librain
-cmake \
-        -DCMAKE_INSTALL_PREFIX=$SDS \
-        -DLD_LIBDIR=lib \
-        -DJERASURE_INCDIR=$SDS/include/ \
-        -DJERASURE_LIBDIR=$SDS/lib \
-        ../librain
-make && make install
-cd ..
-
 # gridinit and its dependencies
 pkg_install libevent-dev
 
 git clone https://github.com/open-io/gridinit.git
 mkdir build-gridinit && cd build-gridinit
 cmake \
-        -DCMAKE_INSTALL_PREFIX=$SDS \
-	-DGRIDINIT_SOCK_PATH=/run/gridinit/gridinit.sock\
-        -DLD_LIBDIR=lib \
-        ../gridinit
+  -DCMAKE_INSTALL_PREFIX=$SDS \
+  -DGRIDINIT_SOCK_PATH=/run/gridinit/gridinit.sock\
+  -DLD_LIBDIR=lib \
+  ../gridinit
 make && make install
 cd ..
 

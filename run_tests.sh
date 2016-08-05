@@ -27,33 +27,33 @@ export SDS=/home/openio/build
 export LD_LIBRARY_PATH=/home/openio/build/lib
 export SDS_TEST_CONFIG_FILE="/home/openio/.oio/sds/conf/test.conf"
 export PATH=$PATH:${SDS}"/bin"
-export TMPDIR=/tmp
+export TMPDIR=/home/openio/tmp
 
 # Retrieve oio-sds source
 cd ${TMPDIR}
-git clone https://github.com/open-io/oio-sds
-if [ ${COMMIT_ID} ]
- then
-         echo "Checkout commit id ${COMMIT_ID}"
-         cd oio-sds
-         git checkout ${COMMIT_ID}
-         cd ..
-fi
-if [ ${BRANCH} ]
- then
-         echo "Checkout from branch ${BRANCH}"
-         cd oio-sds
-         git checkout -b LOCAL_BRANCH origin/${BRANCH}
-         cd ..
-fi
-if [ ${PULL_ID} ]
- then
-         echo "Checkout Pull Request ${PULL_ID} from branch ${BRANCH}"
-         cd oio-sds
-         git fetch origin +refs/pull/${PULL_ID}/merge:
-         git checkout -qf FETCH_HEAD
-         cd ..
-fi
+#git clone https://github.com/open-io/oio-sds
+#if [ ${COMMIT_ID} ]
+# then
+#         echo "Checkout commit id ${COMMIT_ID}"
+#         cd oio-sds
+#         git checkout ${COMMIT_ID}
+#         cd ..
+#fi
+#if [ ${BRANCH} ]
+# then
+#         echo "Checkout from branch ${BRANCH}"
+#         cd oio-sds
+#         git checkout -b LOCAL_BRANCH origin/${BRANCH}
+#         cd ..
+#fi
+#if [ ${PULL_ID} ]
+# then
+#         echo "Checkout Pull Request ${PULL_ID} from branch ${BRANCH}"
+#         cd oio-sds
+#         git fetch origin +refs/pull/${PULL_ID}/merge:
+#         git checkout -qf FETCH_HEAD
+#         cd ..
+#fi
 
 # Install nose htmloutput (waiting for jenkins integration to implement xunit)
 sudo pip install nose-htmloutput

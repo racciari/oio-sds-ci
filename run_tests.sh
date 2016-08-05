@@ -62,7 +62,8 @@ sudo pip install nose-htmloutput
 function run_single_instance () {
   cd ${TMPDIR}/oio-sds
   export NOSE_ARGS="--with-xunit --xunit-file=${TMPDIR}/nosestests-single.xml --with-html --html-file=${TMPDIR}/nosestests-single.html"
-  tools/oio-reset.sh -S SINGLE -X sqlx -X zookeeper -R 1 -B 1
+#  tools/oio-reset.sh -S SINGLE -X sqlx -X zookeeper -R 1 -B 1
+  tools/oio-reset.sh -N NS -f etc/bootstrap-SINGLE.yml
   tox -e func
 }
 

@@ -29,7 +29,7 @@ mkdir -p ${TMPDIR}
 cd ${TMPDIR}
 
 # required everywhere
-pkg_install git autoconf libtool make gcc
+pkg_install git autoconf libtool make gcc cmake
 
 # asn1c
 git clone https://github.com/open-io/asn1c.git
@@ -41,6 +41,7 @@ cd ..
 # gridinit and its dependencies
 pkg_install libevent-dev
 
+echo "Building GridInit ..."
 git clone https://github.com/open-io/gridinit.git
 mkdir build-gridinit && cd build-gridinit
 cmake \
@@ -74,6 +75,7 @@ pkg_install \
 pkg_install python-setuptools python-cffi
 
 # Build SDS
+echo "Building OpenIO SDS ..."
 git clone https://github.com/open-io/oio-sds.git
 if [ ${COMMIT_ID} ]
  then

@@ -30,7 +30,7 @@ export PATH=$PATH:${SDS}"/bin"
 export TMPDIR=/home/openio/tmp
 
 # Retrieve oio-sds source
-cd ${TMPDIR}
+#cd ${TMPDIR}
 #git clone https://github.com/open-io/oio-sds
 #if [ ${COMMIT_ID} ]
 # then
@@ -60,10 +60,10 @@ sudo pip install nose-htmloutput
 
 # Launch a minimalist instance of oio-sds (no sqlx, no zookeeper, repli x1)
 function run_single_instance () {
-	export NOSE_ARGS="--with-xunit --xunit-file=${TMPDIR}/nosestests-single.xml --with-html --html-file=${TMPDIR}/nosestests-single.html"
-	oio-reset.sh -S SINGLE -X sqlx -X zookeeper -R 1 -B 1
-	cd ${TMPDIR}/oio-sds
-	tox -e func
+  cd ${TMPDIR}/oio-sds
+  export NOSE_ARGS="--with-xunit --xunit-file=${TMPDIR}/nosestests-single.xml --with-html --html-file=${TMPDIR}/nosestests-single.html"
+  tools/oio-reset.sh -S SINGLE -X sqlx -X zookeeper -R 1 -B 1
+  tox -e func
 }
 
 # Launch functional test

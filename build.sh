@@ -29,7 +29,7 @@ mkdir -p ${TMPDIR}
 cd ${TMPDIR}
 
 # required everywhere
-pkg_install git autoconf libtool make gcc cmake pkg-config
+pkg_install git autoconf libtool make gcc cmake pkg-config libglib2.0-dev
 
 # asn1c
 git clone https://github.com/open-io/asn1c.git
@@ -57,14 +57,13 @@ pkg_install \
     flex bison \
     libcurl4-openssl-dev \
     libjson-c-dev \
-    libglib2.0-dev \
     libapr1-dev \
     curl
 
 # Dependencies specific to the backend
 pkg_install \
     libneon27-dev \
-    sqlite3 libsqlite3-0 libsqlite3-dev \
+    sqlite3 libsqlite3-0 libsqlite3-dev libsqlite0-dev \
     libzmq3-dev \
     libapr1-dev libaprutil1-dev \
     apache2 apache2-dev \

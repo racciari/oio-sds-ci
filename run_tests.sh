@@ -56,6 +56,7 @@ export TMPDIR=/home/openio/tmp
 #fi
 
 # Install nose htmloutput (waiting for jenkins integration to implement xunit)
+pkg_install python-pip
 sudo pip install nose-htmloutput
 
 # Launch a minimalist instance of oio-sds (no sqlx, no zookeeper, repli x1)

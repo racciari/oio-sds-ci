@@ -74,7 +74,7 @@ pkg_install \
     libzookeeper-mt-dev
 
 # Required since the SDK_ONLY installation now brings the python part.
-pkg_install python-setuptools python-cffi
+pkg_install python-setuptools python-cffi python-yaml
 
 # Build SDS
 echo "Building OpenIO SDS ..."
